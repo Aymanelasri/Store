@@ -1,0 +1,213 @@
+/* Cart Styling */
+.cart-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.cart-header {
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(139, 69, 19, 0.3);
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f8f9fa;
+  border-radius: 15px;
+}
+
+.empty-cart i {
+  font-size: 4rem;
+  color: #dee2e6;
+  margin-bottom: 20px;
+}
+
+.cart-items .border {
+  border: 1px solid #e9ecef !important;
+  border-radius: 10px !important;
+  transition: all 0.3s ease;
+}
+
+.cart-items .border:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.gift-section {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  padding: 20px;
+  border-radius: 15px;
+  border-left: 5px solid #ffc107;
+}
+
+.gift-note {
+  font-size: 0.9rem;
+  color: #856404;
+  font-style: italic;
+}
+
+.summary-section {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid #e9ecef;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.checkout-btn {
+  background: linear-gradient(45deg, #28a745, #20c997) !important;
+  border: none;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background: linear-gradient(45deg, #218838, #1ea085) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+}
+
+.features-section {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.feature-item {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  color: white;
+  font-size: 1.5rem;
+}
+
+/* Modal Styling */
+.modal-content {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  color: white;
+  border-radius: 15px 15px 0 0;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #8B4513;
+  box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #8B4513, #A0522D);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #654321, #8B4513);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: #6c757d;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.btn-danger {
+  background: #dc3545;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+}
+
+.alert {
+  border-radius: 10px;
+  border: none;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  color: #155724;
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+  color: #721c24;
+}
+/* Cart Mobile Responsive */
+@media (max-width: 767px) {
+  .checkout-btn {
+    font-size: 1rem !important;
+    padding: 4px 6px !important;
+    height: 35px !important;
+    line-height: 1 !important;
+    font-weight: 600 !important;
+  }
+  
+  .btn-sm {
+    font-size: 1rem !important;
+    padding: 4px 6px !important;
+    height: 35px !important;
+    line-height: 1 !important;
+  }
+  
+  .btn-primary {
+    font-size: 1rem !important;
+    padding: 4px 6px !important;
+    height: 35px !important;
+    line-height: 1 !important;
+  }
+  
+  .btn-danger {
+    font-size: 1rem !important;
+    padding: 4px 6px !important;
+    height: 35px !important;
+    line-height: 1 !important;
+  }
+}
