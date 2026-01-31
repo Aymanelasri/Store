@@ -79,15 +79,15 @@
   color: #fff;
   font-size: 14px;
   text-decoration: none;
-  border: 2px solid #fff;
+  background-color: transparent;
   padding: 10px 20px;
-  border-radius: 25px;
+  border:none;
   transition: all 0.3s ease;
   display: inline-block;
 }
 
 .hero-link:hover {
-  background: #fff;
+  
   color: #333;
   transform: translateY(-2px);
 }
