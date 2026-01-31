@@ -146,7 +146,7 @@ export default function All() {
     <>
       <main>
         <section className="all-products">
-          <h2 className="text-center my-4" style={{ fontFamily: 'calibri', fontWeight: 'bold' }}>ALL PRODUCTS</h2>
+          <h2 className="text-center my-4" style={{ fontFamily:'roboto , sans-serif , serif, cursive', fontWeight: 'bold' }}>ALL PRODUCTS</h2>
           
           <div className="container d-flex gap-4 text-center justify-content-center mb-4">
             <div 
@@ -182,13 +182,14 @@ export default function All() {
                   <div className="card h-100">
                     <img src={product.img} className="card-img-top" alt={product.title} style={{height: product.id >= 31 && product.id <= 43 ? '380px' : '250px', objectFit: 'cover'}} />
                     <div className="card-body">
-                      <h5 className="card-title">{product.title}</h5>
-                      <p className="card-text"><strong>PRIX : </strong><strong>{product.prix}</strong></p>
-                      <Link to={`/Details/${product.id}`} className='btn btn-light'>Voir Détails</Link><br /><br />
-                      <button className='btn btn-primary' onClick={() => addToCart(product)}>
-                        <i className="fas fa-shopping-cart me-1"></i>
-                       
-                      </button>
+                      <h5 className="card-title ">{product.title}</h5>
+                      <p className="card-text "><strong>PRIX : </strong><strong>{product.prix}</strong></p>
+                      <div className="d-grid gap-1">
+                        <Link to={`/Details/${product.id}`} className='btn btn-light mb-2'>Voir Détails</Link> 
+                        <button className='btn btn-primary' onClick={() => addToCart(product)}>
+                          <i className="fas fa-shopping-cart me-1"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

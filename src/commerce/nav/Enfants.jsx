@@ -25,7 +25,8 @@ export default function Enfants() {
   );
 
   return (
-    <div className="container py-5">
+    <>
+      <div className="container py-5">
       <div className="text-center mb-5">
         <h1 className="display-4 fw-bold" style={{color: '#8B4513'}}>Collection Enfants</h1>
         <p className="lead text-muted">Découvrez notre sélection pour enfants</p>
@@ -81,5 +82,47 @@ export default function Enfants() {
         )}
       </div>
     </div>
+ 
+      {/* Kids Fun Section */}
+      <div className="py-5 bg-light text-center w-100">
+  <div className="container">
+    <h2 className="mb-4" style={{color: '#8B4513'}}>Mode Enfants Amusante</h2>
+    <div className="row g-4" style={{justifyContent: 'space-between'}}>
+
+      <div className="col-md-4" >
+        <div className="card border-0 shadow-sm h-100 p-3 d-flex">
+          <div className="card-body d-flex flex-column align-items-center text-center justify-content-center">
+            <i className="fas fa-smile fa-4x text-success mb-3"></i>
+            <h5 className="fw-bold">Confort & Jeu</h5>
+            <p className="text-muted">Vêtements confortables pour jouer et grandir en toute liberté</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="col-md-4"  >
+        <div className="card border-0 shadow-sm h-100 p-3 d-flex">
+          <div className="card-body d-flex flex-column align-items-center text-center justify-content-center">
+            <i className="fas fa-palette fa-4x text-warning mb-3"></i>
+            <h5 className="fw-bold">Couleurs Vives</h5>
+            <p className="text-muted">Des couleurs éclatantes qui stimulent la créativité</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="col-md-4" >
+        <div className="card border-0 shadow-sm h-100 p-3 d-flex ">
+          <div className="card-body d-flex flex-column align-items-center text-center justify-content-center">
+            <i className="fas fa-star fa-4x text-danger mb-3"></i>
+            <h5 className="fw-bold">Qualité Premium</h5>
+            <p className="text-muted">Matériaux doux et résistants pour le bien-être des enfants</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    </>
   );
 }

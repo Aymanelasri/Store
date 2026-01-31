@@ -182,4 +182,12 @@
   .product-image {
     max-height: 250px;
   }
+  
+}
+@media (max-width: 998px) {
+  .back-btn{
+    margin-top: 80px;
+  }
+  
+  
 }

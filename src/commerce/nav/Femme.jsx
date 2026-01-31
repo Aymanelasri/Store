@@ -5,6 +5,7 @@ import { CartContext } from '../CartContext';
 export default function Femme() {
   const { addToCart } = useContext(CartContext);
   const [searchTerm, setSearchTerm] = useState('');
+  
 
   const womenProducts = [
     {id:1,title:"Elegant Midi Dress",prix:"300 DH",description:"A lightweight printed midi dress that offers comfort and elegance for everyday wear or special occasions.",img:"/images/women/photo1.webp"},
@@ -24,62 +25,112 @@ export default function Femme() {
     product.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+ 
+
   return (
-    <div className="container py-5">
-      <div className="text-center mb-5">
-        <h1 className="display-4 fw-bold" style={{color: '#8B4513'}}>Collection Femme</h1>
-        <p className="lead text-muted">Découvrez notre sélection féminine</p>
-      </div>
-
-      <div className="search-container">
-        <div className="search-bar">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Rechercher des produits..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <i className="fas fa-search search-icon"></i>
+    <>
+      <div className="container py-5">
+        <div className="text-center mb-5">
+          <h1 className="display-4 fw-bold" style={{color: '#8B4513'}}>Collection Femme</h1>
+          <p className="lead text-muted">Découvrez notre sélection féminine</p>
         </div>
-      </div>
 
-      <div className="row g-4">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map(product => (
-            <div key={product.id} className="col-sm-6 col-md-4 col-lg-3">
-              <div className="card h-100 shadow-sm border-0">
-                <img src={product.img} className="card-img-top" alt={product.title} style={{height: '250px', objectFit: 'cover'}} />
-                <div className="card-body d-flex flex-column">
-                  <h5 className="card-title text-truncate">{product.title}</h5>
-                  <p className="card-text text-muted small flex-grow-1">{product.description}</p>
-                  <div className="mt-auto">
-                    <div className="d-flex justify-content-between align-items-center mb-3">
-                      <span className="h5 text-success mb-0">{product.prix}</span>
-                    </div>
-                    <div className="d-grid gap-2">
-                      <Link to={`/Details/${product.id}`} className="btn btn-sm" style={{color: '#8B4513', borderColor: '#8B4513'}}>
-                        Voir Détails
-                      </Link>
-                      <button className="btn btn-sm text-white" style={{backgroundColor: '#8B4513'}} onClick={() => addToCart(product)}>
-                        <i className="fas fa-cart-plus me-1"></i>
-                      </button>
+        <div className="search-container">
+          <div className="search-bar">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Rechercher des produits..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <i className="fas fa-search search-icon"></i>
+          </div>
+        </div>
+
+        <div className="row g-4">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map(product => (
+              <div key={product.id} className="col-sm-6 col-md-4 col-lg-3">
+                <div className="card h-100 shadow-sm border-0">
+                  <img src={product.img} className="card-img-top" alt={product.title} style={{height: '250px', objectFit: 'cover'}} />
+                  <div className="card-body d-flex flex-column">
+                    <h5 className="card-title text-truncate">{product.title}</h5>
+                    <p className="card-text text-muted small flex-grow-1">{product.description}</p>
+                    <div className="mt-auto">
+                      <div className="d-flex justify-content-between align-items-center mb-3">
+                        <span className="h5 text-success mb-0">{product.prix}</span>
+                      </div>
+                      <div className="d-grid gap-2">
+                        <Link to={`/Details/${product.id}`} className="btn btn-sm" style={{color: '#8B4513', borderColor: '#8B4513'}}>
+                          Voir Détails
+                        </Link>
+                        <button className="btn btn-sm text-white" style={{backgroundColor: '#8B4513'}} onClick={() => addToCart(product)}>
+                          <i className="fas fa-cart-plus me-1"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+            ))
+          ) : (
+            <div className="col-12">
+              <div className="no-products">
+                <i className="fas fa-search"></i>
+                <h3>Aucun produit trouvé</h3>
+                <p>Essayez de modifier votre recherche</p>
+              </div>
             </div>
-          ))
-        ) : (
-          <div className="col-12">
-            <div className="no-products">
-              <i className="fas fa-search"></i>
-              <h3>Aucun produit trouvé</h3>
-              <p>Essayez de modifier votre recherche</p>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
+
+  
+      <div className="py-5 text-center w-100">
+  <div className="container">
+    <h2 className="mb-4" style={{color: '#8B4513'}}>Conseils Mode Féminine</h2>
+    <div className="row g-4" style={{justifyContent: 'space-between'}}>
+
+      <div className="col-md-4" >
+        <div className="card border-0 shadow-sm h-100 hover-shadow p-3 d-flex">
+          <div className="card-body d-flex flex-column align-items-center text-center justify-content-center">
+            <i className="fas fa-palette fa-4x text-pink mb-3"></i>
+            <h5 className="fw-bold">Couleurs Tendance</h5>
+            <p className="text-muted">Découvrez les couleurs qui subliment votre teint cette saison</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="col-md-4" >
+        <div className="card border-0 shadow-sm h-100 hover-shadow p-3 d-flex">
+          <div className="card-body d-flex flex-column align-items-center text-center justify-content-center">
+            <i className="fas fa-gem fa-4x text-primary mb-3"></i>
+            <h5 className="fw-bold">Accessoires Chic</h5>
+            <p className="text-muted">Les accessoires qui font la différence dans votre look</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="col-md-4" >
+        <div className="card border-0 shadow-sm h-100 hover-shadow p-3 d-flex">
+          <div className="card-body d-flex flex-column align-items-center text-center justify-content-center">
+            <i className="fas fa-star fa-4x text-warning mb-3"></i>
+            <h5 className="fw-bold">Style Personnel</h5>
+            <p className="text-muted">Créez votre propre style unique et authentique</p>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
+</div>
+
+
+     
+      
+
+      
+    </>
   );
 }

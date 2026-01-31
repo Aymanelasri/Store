@@ -204,6 +204,12 @@
   .hero-nav[data-page="/Register"] {
     background: rgb(117 68 31) !important;
   }
+  .hero-nav[data-page="/Cart"] {
+    background: rgb(117 68 31) !important;
+  }
+  .hero-nav[data-page*="/Details/"] {
+    background: rgb(117 68 31) !important;
+  }
 }
 /* Search bar styles */
 .search-container {
@@ -305,3 +311,13 @@
   color: #999;
 }
 
+/* Mobile hero content center */
+@media (max-width: 991px) {
+  .hero-content {
+    text-align: center !important;
+    left: 50% !important;
+    top: 50%;
+    transform: translateX(-50%) !important;
+    width: 90% !important;
+  }
+}

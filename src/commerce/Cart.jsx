@@ -50,7 +50,7 @@ export default function Cart() {
 
   return (
     <div className="container mt-4">
-      <div style={{ border: "none" , borderRadius: "5px" , padding: "10px", backgroundColor: "#d4af3715 "  }} className="mb-4 p-3">
+      <div style={{ border: "none" , borderRadius: "5px" , padding: "10px" , backgroundColor: "#d4af3715 "  }} className="mb-4 p-3  h4">
         <h4 className="mb-3"><Link to="/"> Continuer vos achats</Link></h4>
       </div>
       

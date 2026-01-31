@@ -27,7 +27,8 @@ export default function Accessoires() {
   );
 
   return (
-    <div className="container py-5">
+    <>
+      <div className="container py-5">
       <div className="text-center mb-5">
         <h1 className="display-4 fw-bold text-info">Collection Accessoires</h1>
         <p className="lead text-muted">Découvrez notre sélection d'accessoires</p>
@@ -83,5 +84,45 @@ export default function Accessoires() {
         )}
       </div>
     </div>
+  
+      {/* Accessories Guide Section */}
+      <div className="py-5 text-center w-100">
+        <div className="container">
+          <h2 className="mb-4" style={{color: '#8B4513'}}>Guide des Accessoires</h2>
+          <div className="row g-4" style={{justifyContent: 'space-between'}}>
+            <div className="col-md-4" >
+              <div className="card border-0 shadow-sm h-100 p-3 d-flex">
+                <div className="card-body d-flex flex-column align-items-center text-center justify-content-center">
+                  <i className="fas fa-clock fa-4x text-info mb-3"></i>
+                  <h5 className="fw-bold">Montres</h5>
+                  <p className="text-muted">Montres élégantes pour tous les styles et occasions</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4" >
+              <div className="card border-0 shadow-sm h-100 p-3 d-flex">
+                <div className="card-body d-flex flex-column align-items-center text-center justify-content-center">
+                  <i className="fas fa-eye fa-4x text-primary mb-3"></i>
+                  <h5 className="fw-bold">Lunettes</h5>
+                  <p className="text-muted">Protection UV et style avec nos lunettes tendance</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4" >
+              <div className="card border-0 shadow-sm h-100 p-3 d-flex">
+                <div className="card-body d-flex flex-column align-items-center text-center justify-content-center">
+                  <i className="fas fa-shopping-bag fa-4x text-warning mb-3"></i>
+                  <h5 className="fw-bold">Chapeaux & Sacs</h5>
+                  <p className="text-muted">Complétez votre look avec nos accessoires premium</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+     
+    </>
   );
 }

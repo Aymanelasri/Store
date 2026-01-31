@@ -5,6 +5,7 @@
   padding: 20px;
 }
 
+
 .cart-header {
   background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
   color: white;
@@ -180,34 +181,13 @@
   background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
   color: #721c24;
 }
-/* Cart Mobile Responsive */
-@media (max-width: 767px) {
-  .checkout-btn {
-    font-size: 1rem !important;
-    padding: 4px 6px !important;
-    height: 35px !important;
-    line-height: 1 !important;
-    font-weight: 600 !important;
+
+
+
+@media (max-width: 987px) {
+   .h4 {
+    font-size: 1.5rem !important;
+    margin-top: 80px !important;
   }
   
-  .btn-sm {
-    font-size: 1rem !important;
-    padding: 4px 6px !important;
-    height: 35px !important;
-    line-height: 1 !important;
-  }
-  
-  .btn-primary {
-    font-size: 1rem !important;
-    padding: 4px 6px !important;
-    height: 35px !important;
-    line-height: 1 !important;
-  }
-  
-  .btn-danger {
-    font-size: 1rem !important;
-    padding: 4px 6px !important;
-    height: 35px !important;
-    line-height: 1 !important;
-  }
 }
