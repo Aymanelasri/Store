@@ -20,7 +20,7 @@
 }
 
 .auth-image {
-  background: url('C:\Users\ayman\Desktop\react\e-commerce22\public\images\3img\women.Webp');
+  background: url('/public/images/3img/women.Webp');
   background-size: cover;
   background-position: center;
   display: flex;
