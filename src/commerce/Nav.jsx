@@ -92,7 +92,7 @@ export default function Nav() {
         {isHomePage && (
           <div className="hero-content container">
             <h6 className="text-uppercase hero-subtitle">Nouvelle Collection Automne</h6>
-            <a href="#" className="hero-link">Découvrir →</a>
+            <button type="button" className="hero-link">Découvrir →</button>
           </div>
         )}
       </header>
