@@ -3,7 +3,7 @@
   position: relative;
   overflow: hidden;
   color: #fff;
-  background-image: url("C:\Users\ayman\Desktop\react\store\public\roma.jpg");
+  background-image: url("/public/roma.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -256,8 +256,16 @@
     padding: 10px 40px 10px 15px;
   }
 }
+/* Desktop and tablet brand size */
+@media (min-width: 768px) {
+  .hero-nav .navbar-brand {
+    font-size: 28px;
+    letter-spacing: 3px;
+  }
+}
+
 /* Extra small screens (max 330px) */
-@media (min-width: 240px) {
+@media (max-width: 330px) {
   .navbar-brand {
     font-size: 0.9rem !important;
     letter-spacing: 0.5px !important;
