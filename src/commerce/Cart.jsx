@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from './CartContext';
 import './Cart.css';
 import "@fontsource/poppins";
@@ -7,6 +7,7 @@ import "@fontsource/poppins";
 
 export default function Cart() {
   const { cartItems, removeFromCart, clearCart } = useContext(CartContext);
+  const navigate = useNavigate();
   const [showPayment, setShowPayment] = useState(false);
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
@@ -123,7 +124,7 @@ export default function Cart() {
                   const token = localStorage.getItem('token');
                   if (!token) {
                     localStorage.setItem('returnToCart', 'true');
-                    window.location.href = '/Login';
+                    navigate('/login');
                     return;
                   }
                   setShowPayment(true);
