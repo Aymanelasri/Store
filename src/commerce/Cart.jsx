@@ -123,7 +123,7 @@ export default function Cart() {
                   const token = localStorage.getItem('token');
                   if (!token) {
                     localStorage.setItem('returnToCart', 'true');
-                    window.location.href = '/login';
+                    window.location.href = '/Login';
                     return;
                   }
                   setShowPayment(true);
