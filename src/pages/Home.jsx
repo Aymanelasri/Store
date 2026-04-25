@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import ProductCard from '../components/ProductCard';
 import products from '../data/products';
@@ -35,7 +35,6 @@ const features = [
 ];
 
 export default function Home({ showToast }) {
-  const navigate = useNavigate();
   
   // Remove duplicates and filter for femme products only
   const uniqueProducts = products.filter((p, index, self) => 

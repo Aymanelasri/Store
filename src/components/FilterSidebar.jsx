@@ -57,9 +57,9 @@ export default function FilterSidebar({
   
   const clothingSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
   const shoeSizes = ['36', '37', '38', '39', '40', '41', '42', '43', '44', '45'];
-  const sizes = isShoeCategory ? shoeSizes : clothingSizes;
+  const availableSizes = isShoeCategory ? shoeSizes : clothingSizes;
 
-  const colors = [
+  const availableColors = [
     { name: 'Noir', hex: '#1A1A1A' },
     { name: 'Or', hex: '#C9A96E' },
     { name: 'Crème', hex: '#F8F5F0' },
@@ -78,14 +78,14 @@ export default function FilterSidebar({
     updateFilters({ ...filters, category: updated });
   };
 
-  const handleSizeChange = (size) => {
+  const handleSizeFilter = (size) => {
     const updated = filters.size.includes(size)
       ? filters.size.filter((s) => s !== size)
       : [...filters.size, size];
     updateFilters({ ...filters, size: updated });
   };
 
-  const handleColorChange = (color) => {
+  const handleColorFilter = (color) => {
     const updated = filters.color.includes(color)
       ? filters.color.filter((c) => c !== color)
       : [...filters.color, color];

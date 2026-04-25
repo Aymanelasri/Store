@@ -6,7 +6,7 @@ import { useCart } from '../context/CartContext';
 const FALLBACK = 'https://placehold.co/400x500/f5f0eb/C9A96E?text=Casa+Moda';
 
 export default function ProductCard({ product, showToast }) {
-  const [imgIdx, setImgIdx] = useState(0);
+  const [imgIdx] = useState(0);
   const { isWishlisted, toggleItem } = useWishlist();
   const { addItem } = useCart();
   const wishlisted = isWishlisted(product.id);

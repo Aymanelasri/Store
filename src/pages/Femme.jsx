@@ -73,7 +73,7 @@ export default function Femme({ showToast }) {
     }
     
     setFilters(newFilters);
-  }, [searchParams]);
+  }, [cat, filters, gender, sale, sortParam]);
 
   const filteredAndSortedProducts = useMemo(() => {
     // First filter products
@@ -172,7 +172,7 @@ export default function Femme({ showToast }) {
       default:
         return result.sort((a, b) => (b.rating || 0) - (a.rating || 0));
     }
-  }, [filters, search]);
+  }, [filters, search, cat, gender, sale, sortParam]);
 
   const handleFilterChange = (newFilters) => {
     setFilters(newFilters);
