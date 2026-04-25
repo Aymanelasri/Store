@@ -1,0 +1,503 @@
+/* ========================================
+   CASA MODA - GLOBAL STYLES
+   Luxury Moroccan Fashion E-commerce
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@400;500;600;700&display=swap');
+
+:root {
+  --gold: #C9A96E;
+  --dark: #1a1a1a;
+  --light-bg: #FAF8F5;
+  --text-primary: #2C2C2C;
+  --text-secondary: #888888;
+  --border: #E8E0D5;
+  --sale-red: #E53935;
+  --new-green: #2E7D32;
+
+  /* keep existing vars */
+  --color-dark: #1A1A1A;
+  --color-gold: #C9A96E;
+  --color-cream: #F8F5F0;
+  --color-terracotta: #8B4513;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-text-lighter: #999999;
+  --color-border: #E8E8E8;
+  --color-bg-light: #FAFAF8;
+  --color-white: #FFFFFF;
+  --color-success: #2E7D32;
+  --color-error: #E53935;
+  --color-warning: #F59E0B;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 2.5rem;
+  --spacing-3xl: 3rem;
+  --spacing-4xl: 4rem;
+  --max-width-container: 1280px;
+  --navbar-height: 70px;
+  --navbar-height-mobile: 60px;
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-fixed: 500;
+  --z-modal: 1000;
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+}
+
+/* ========== RESET & BASE ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--navbar-height);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-white);
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== TYPOGRAPHY ========== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 600;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+p {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+
+/* ========== LINKS ========== */
+a {
+  color: var(--color-dark);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--color-gold);
+}
+
+/* ========== BUTTONS ========== */
+button {
+  font-family: var(--font-body);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+/* Primary Button (Gold) */
+.btn-primary {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.5px;
+  border: 2px solid var(--color-gold);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--color-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Secondary Button (Outlined) */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-dark);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-xs);
+  border: 2px solid var(--color-dark);
+  letter-spacing: 0.5px;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+/* Icon Button */
+.btn-icon {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  color: var(--color-dark);
+  transition: all var(--transition-base);
+}
+
+.btn-icon:hover {
+  color: var(--color-gold);
+  transform: scale(1.1);
+}
+
+/* ========== FORMS ========== */
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
+}
+
+/* ========== UTILITY CLASSES ========== */
+.container {
+  max-width: var(--max-width-container);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.section-padding {
+  padding: var(--spacing-4xl) var(--spacing-lg);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-xl);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--color-text-lighter);
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.mt-1 {
+  margin-top: var(--spacing-xs);
+}
+.mt-2 {
+  margin-top: var(--spacing-md);
+}
+.mt-3 {
+  margin-top: var(--spacing-lg);
+}
+.mt-4 {
+  margin-top: var(--spacing-xl);
+}
+
+.mb-1 {
+  margin-bottom: var(--spacing-xs);
+}
+.mb-2 {
+  margin-bottom: var(--spacing-md);
+}
+.mb-3 {
+  margin-bottom: var(--spacing-lg);
+}
+.mb-4 {
+  margin-bottom: var(--spacing-xl);
+}
+
+.hidden {
+  display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-base);
+}
+
+.animate-slide-up {
+  animation: slideInUp var(--transition-base);
+}
+
+.animate-slide-down {
+  animation: slideInDown var(--transition-base);
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--transition-base);
+}
+
+.animate-bounce {
+  animation: bounce 0.6s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ========== SCROLLBAR ========== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-terracotta);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  :root {
+    --spacing-4xl: 2.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .section-padding {
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .section-padding {
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
+
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+}
+
+/* ========== COMPONENT UTILITIES ========== */
+body { font-family: 'Jost', sans-serif; }
+
+.product-card { transition: transform 0.2s, box-shadow 0.2s; }
+.product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1) !important; }
+
+.category-card img { transition: transform 0.4s; }
+.category-card:hover img { transform: scale(1.05); }
+
+.btn-gold { background: #C9A96E; color: white; }
+.btn-gold:hover { background: #b8944f; color: white; }
+
+.nav-link:hover { color: #C9A96E !important; }

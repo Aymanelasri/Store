@@ -1,0 +1,262 @@
+/* ========================================
+   FILTER SIDEBAR STYLES
+   ======================================== */
+
+.filter-sidebar {
+  background-color: var(--color-white);
+  padding: var(--spacing-lg);
+  border-right: 1px solid var(--color-border);
+  max-width: 280px;
+  height: fit-content;
+  position: sticky;
+  top: calc(var(--navbar-height) + 20px);
+}
+
+.filter-section {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.filter-section:last-child {
+  border-bottom: none;
+}
+
+.filter-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-dark);
+  margin-bottom: var(--spacing-md);
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  transition: color var(--transition-base);
+}
+
+.filter-checkbox:hover {
+  color: var(--color-gold);
+}
+
+.filter-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  margin-right: var(--spacing-sm);
+  transition: all var(--transition-base);
+  background-color: var(--color-white);
+}
+
+.filter-checkbox input:checked ~ .checkmark {
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+}
+
+.filter-checkbox input:checked ~ .checkmark:after {
+  content: '';
+  position: absolute;
+  display: block;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Size Buttons */
+.filter-sizes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-xs);
+}
+
+.size-btn {
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.size-btn:hover {
+  border-color: var(--color-gold);
+}
+
+.size-btn.active {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  border-color: var(--color-gold);
+}
+
+/* Color Buttons */
+.filter-colors {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.color-btn {
+  width: 40px;
+  height: 40px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.color-btn:hover {
+  border-color: var(--color-text);
+  transform: scale(1.1);
+}
+
+.color-btn.active {
+  border-color: var(--color-text);
+  box-shadow: var(--shadow-md);
+}
+
+/* Price Slider */
+.price-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.price-slider {
+  width: 100%;
+  cursor: pointer;
+}
+
+.price-display {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+/* Select */
+.filter-select {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  background-color: var(--color-white);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.filter-select:hover {
+  border-color: var(--color-gold);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
+}
+
+/* Clear Filters Button */
+.clear-filters-btn {
+  width: 100%;
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-light);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-base);
+  margin-top: var(--spacing-lg);
+}
+
+.clear-filters-btn:hover {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  border-color: var(--color-gold);
+}
+
+/* Mobile Drawer */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 100vw;
+  height: 100vh;
+  border: none;
+  border-radius: 0;
+  z-index: var(--z-modal);
+  overflow-y: auto;
+  animation: slideInUp var(--transition-base);
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.filter-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.filter-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+  padding: var(--spacing-xs);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .filter-sidebar {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-sidebar {
+    display: none;
+  }
+
+  .mobile-drawer {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-lg);
+  }
+}

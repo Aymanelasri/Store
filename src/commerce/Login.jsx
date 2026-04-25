@@ -4,7 +4,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "./firebase";
 import './Login.css';
 
-export default function Login() {
+export default function Login({ showToast }) {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -18,20 +18,22 @@ export default function Login() {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       
-      // Store Google user info in localStorage
-      const token = 'google_token_' + Date.now();
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify({
-        id: result.user.uid,
+      const userData = {
         name: result.user.displayName,
         email: result.user.email,
-       
-      }));
+        photo: result.user.photoURL,
+        uid: result.user.uid,
+        provider: 'google'
+      };
+      localStorage.setItem('casaModa_user', JSON.stringify(userData));
       
-      // Trigger custom event to update Nav
-      window.dispatchEvent(new Event('loginStatusChanged'));
+      if (showToast) {
+        showToast(`Bienvenue ${result.user.displayName}! 👋`, 'success');
+      }
       
-      // Navigate to home or cart if pending payment
+      // Force navbar and cart/wishlist to update
+      window.dispatchEvent(new Event('storage'));
+      
       const pendingPayment = localStorage.getItem('pendingPayment');
       const returnToCart = localStorage.getItem('returnToCart');
       if (pendingPayment) {
@@ -44,7 +46,7 @@ export default function Login() {
         navigate('/');
       }
     } catch (error) {
-      setError('Google sign-in failed: ' + error.message);
+      setError('Échec de la connexion Google: ' + error.message);
     }
   };
 
@@ -53,25 +55,45 @@ export default function Login() {
     setLoading(true);
     setError('');
 
+    if (!formData.email || !formData.password) {
+      setError('Veuillez remplir tous les champs');
+      setLoading(false);
+      return;
+    }
+    if (!formData.email.includes('@')) {
+      setError('Email invalide');
+      setLoading(false);
+      return;
+    }
+    if (formData.password.length < 6) {
+      setError('Mot de passe trop court (min 6 caractères)');
+      setLoading(false);
+      return;
+    }
+
     try {
-      // Get users from localStorage
       const users = JSON.parse(localStorage.getItem('users') || '[]');
-      const user = users.find(u => u.email === formData.email && u.password === formData.password);
+      
+      const user = users.find(u => 
+        u.email.toLowerCase() === formData.email.toLowerCase() && 
+        u.password === formData.password
+      );
 
       if (user) {
-        // Login successful
-        const token = 'token_' + Date.now();
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify({
-          id: user.id,
+        const userData = { 
+          email: user.email, 
           name: user.name,
-          email: user.email
-        }));
+          id: user.id
+        };
+        localStorage.setItem('casaModa_user', JSON.stringify(userData));
         
-        // Trigger custom event to update Layout
-        window.dispatchEvent(new Event('loginStatusChanged'));
+        if (showToast) {
+          showToast(`Connexion réussie! Bienvenue ${user.name} 👋`, 'success');
+        }
         
-        // Check if there was a pending payment
+        // Force navbar and cart/wishlist to update
+        window.dispatchEvent(new Event('storage'));
+        
         const pendingPayment = localStorage.getItem('pendingPayment');
         const returnToCart = localStorage.getItem('returnToCart');
         if (pendingPayment) {
@@ -84,10 +106,10 @@ export default function Login() {
           navigate('/');
         }
       } else {
-        setError('Password or email is incorrect');
+        setError('Email ou mot de passe incorrect');
       }
     } catch (error) {
-      setError('Password or email is incorrect');
+      setError('Erreur de connexion. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }
@@ -104,37 +126,37 @@ export default function Login() {
         </div>
         
         <div className="auth-form">
-          <h2>Login to Your Account</h2>
-          <p>Please sign in to start shopping</p>
+          <h2>Connexion à votre compte</h2>
+          <p>Veuillez vous connecter pour commencer vos achats</p>
 
           {error && (
-            <div className="error-message">
-              <p>❌ {error}</p>
-            </div>
+            <p style={{ color: '#E53935', fontSize: '13px', marginBottom: '12px' }}>
+              {error}
+            </p>
           )}
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label className="form-label">Email Address</label>
+              <label className="form-label">Adresse email</label>
               <input
                 type="email"
                 className="form-control"
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                 required
-                placeholder="Enter your email"
+                placeholder="Entrez votre email"
               />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Password</label>
+              <label className="form-label">Mot de passe</label>
               <input
                 type="password"
                 className="form-control"
                 value={formData.password}
                 onChange={(e) => setFormData({...formData, password: e.target.value})}
                 required
-                placeholder="Enter your password"
+                placeholder="Entrez votre mot de passe"
               />
             </div>
 
@@ -143,7 +165,7 @@ export default function Login() {
               className="auth-btn"
               disabled={loading}
             >
-              {loading ? 'Signing In...' : 'Sign In'}
+              {loading ? 'Connexion...' : 'Se connecter'}
             </button>
             
             <button 
@@ -152,12 +174,12 @@ export default function Login() {
               onClick={loginWithGoogle}
               style={{marginTop: '10px', backgroundColor: '#db4437'}}
             >
-              <i className="fab fa-google me-2"></i>Sign in with Google
+              <i className="fab fa-google me-2"></i>Se connecter avec Google
             </button>
           </form>
 
           <div className="auth-links">
-            <p>Don't have an account ? <Link to="/Register">Sign up here</Link></p>
+            <p>Pas de compte ? <span onClick={() => navigate('/Register')} style={{ cursor: 'pointer', color: '#C9A96E' }}>S'inscrire ici</span></p>
           </div>
         </div>
       </div>

@@ -1,0 +1,370 @@
+/* ========================================
+   CONFIRMATION PAGE STYLES
+   ======================================== */
+
+.confirmation-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #FAF8F5 0%, #F0F0F0 100%);
+  padding: 60px 20px;
+}
+
+.confirmation-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 80px;
+  margin-bottom: 24px;
+  animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.confirmation-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  animation: slideInUp 0.8s ease-out 0.2s both;
+}
+
+.confirmation-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 40px;
+  animation: slideInUp 0.8s ease-out 0.4s both;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ========== ORDER DETAILS CARD ========== */
+.order-details-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  text-align: left;
+  animation: slideInUp 0.8s ease-out 0.6s both;
+}
+
+.order-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.order-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: #FAFAFA;
+  border-radius: 12px;
+  border-left: 4px solid #C9A96E;
+}
+
+.info-icon {
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.info-label {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 14px;
+}
+
+.total-amount {
+  color: #C9A96E;
+  font-size: 16px;
+}
+
+/* ========== ORDER ITEMS SUMMARY ========== */
+.order-items-summary {
+  border-top: 2px solid #F0F0F0;
+  padding-top: 24px;
+}
+
+.order-items-summary h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #F8F9FA;
+  border-radius: 8px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-name {
+  display: block;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.item-variants {
+  font-size: 12px;
+  color: #666;
+}
+
+.item-quantity {
+  font-size: 14px;
+  color: #666;
+  min-width: 40px;
+  text-align: center;
+}
+
+.item-price {
+  font-weight: 600;
+  color: #C9A96E;
+  font-size: 14px;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* ========== NEXT STEPS ========== */
+.next-steps {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  text-align: left;
+  animation: slideInUp 0.8s ease-out 0.8s both;
+}
+
+.next-steps h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #C9A96E;
+  color: white;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.step strong {
+  display: block;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.step p {
+  color: #666;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ========== ACTION BUTTONS ========== */
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
+  animation: slideInUp 0.8s ease-out 1s both;
+}
+
+.btn-primary {
+  background: #C9A96E;
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  background: #b8944f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(201, 169, 110, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #666;
+  border: 2px solid #E8E0D5;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.btn-secondary:hover {
+  border-color: #C9A96E;
+  color: #C9A96E;
+  transform: translateY(-2px);
+}
+
+/* ========== CONTACT INFO ========== */
+.contact-info {
+  animation: slideInUp 0.8s ease-out 1.2s both;
+}
+
+.contact-info p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.contact-info a {
+  color: #C9A96E;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  padding: 60px 20px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .confirmation-page {
+    padding: 40px 16px;
+  }
+  
+  .confirmation-title {
+    font-size: 2.2rem;
+  }
+  
+  .order-details-card,
+  .next-steps {
+    padding: 24px 20px;
+  }
+  
+  .order-info-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .success-icon {
+    font-size: 60px;
+  }
+  
+  .confirmation-title {
+    font-size: 1.8rem;
+  }
+  
+  .order-details-card,
+  .next-steps {
+    padding: 20px 16px;
+  }
+  
+  .summary-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .item-quantity,
+  .item-price {
+    align-self: flex-end;
+  }
+}

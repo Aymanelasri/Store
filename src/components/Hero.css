@@ -1,0 +1,147 @@
+/* Hero Section - Split Layout */
+.hero {
+  width: 100%;
+  height: 90vh;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.hero-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-half {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hero-half img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.hero-half:hover img {
+  transform: scale(1.05);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-overlay h2 {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 6px;
+  margin-bottom: 8px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.hero-overlay p {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.hero-btn {
+  border: 1.5px solid white;
+  color: white;
+  background: transparent;
+  padding: 12px 36px;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.hero-btn:hover {
+  background: white;
+  color: #1a1a1a;
+  transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero {
+    height: 80vh;
+    min-height: 500px;
+  }
+  
+  .hero-container {
+    flex-direction: column;
+  }
+  
+  .hero-half {
+    width: 100%;
+    height: 50%;
+  }
+  
+  .hero-overlay {
+    padding: 1.5rem;
+  }
+  
+  .hero-overlay h2 {
+    font-size: 2rem;
+    letter-spacing: 4px;
+  }
+  
+  .hero-overlay p {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
+  
+  .hero-btn {
+    padding: 10px 28px;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 70vh;
+    min-height: 400px;
+  }
+  
+  .hero-overlay {
+    padding: 1rem;
+  }
+  
+  .hero-overlay h2 {
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+  }
+  
+  .hero-overlay p {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-btn {
+    padding: 8px 24px;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+  }
+}

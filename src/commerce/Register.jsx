@@ -4,7 +4,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "./firebase";
 import './Login.css';
 
-export default function Register() {
+export default function Register({ showToast }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,22 +20,25 @@ export default function Register() {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       
-      // Store Google user info in localStorage
-      const token = 'google_token_' + Date.now();
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify({
-        id: result.user.uid,
+      const userData = {
         name: result.user.displayName,
         email: result.user.email,
-      }));
+        photo: result.user.photoURL,
+        uid: result.user.uid,
+        provider: 'google'
+      };
+      localStorage.setItem('casaModa_user', JSON.stringify(userData));
       
-      // Trigger custom event to update Nav
-      window.dispatchEvent(new Event('loginStatusChanged'));
+      if (showToast) {
+        showToast(`Bienvenue ${result.user.displayName}! 🎉`, 'success');
+      }
       
-      // Navigate to home
+      // Force navbar and cart/wishlist to update
+      window.dispatchEvent(new Event('storage'));
+      
       navigate('/');
     } catch (error) {
-      setError('Google sign-up failed: ' + error.message);
+      setError('Échec de l\'inscription Google: ' + error.message);
     }
   };
 
@@ -44,31 +47,36 @@ export default function Register() {
     setLoading(true);
     setError('');
 
+    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
+      setError('Veuillez remplir tous les champs');
+      setLoading(false);
+      return;
+    }
+    if (!formData.email.includes('@')) {
+      setError('Email invalide');
+      setLoading(false);
+      return;
+    }
+    if (formData.password.length < 6) {
+      setError('Mot de passe min 6 caractères');
+      setLoading(false);
+      return;
+    }
+    if (formData.password !== formData.confirmPassword) {
+      setError('Les mots de passe ne correspondent pas');
+      setLoading(false);
+      return;
+    }
+
     try {
-      // Validation
-      if (formData.password !== formData.confirmPassword) {
-        setError('Passwords do not match');
-        setLoading(false);
-        return;
-      }
-
-      if (formData.password.length < 6) {
-        setError('Password must be at least 6 characters');
-        setLoading(false);
-        return;
-      }
-
-      // Get existing users from localStorage
       const users = JSON.parse(localStorage.getItem('users') || '[]');
       
-      // Check if user already exists
-      if (users.find(u => u.email === formData.email)) {
-        setError('User with this email already exists');
+      if (users.find(u => u.email.toLowerCase() === formData.email.toLowerCase())) {
+        setError('Un utilisateur avec cet email existe déjà');
         setLoading(false);
         return;
       }
 
-      // Create new user
       const newUser = {
         id: Date.now(),
         name: formData.name,
@@ -77,26 +85,26 @@ export default function Register() {
         createdAt: new Date().toISOString()
       };
 
-      // Save to localStorage
       users.push(newUser);
       localStorage.setItem('users', JSON.stringify(users));
+      
+      const userData = { 
+        name: newUser.name, 
+        email: newUser.email,
+        id: newUser.id
+      };
+      localStorage.setItem('casaModa_user', JSON.stringify(userData));
 
-      // Auto login after registration
-      const token = 'token_' + Date.now();
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify({
-        id: newUser.id,
-        name: newUser.name,
-        email: newUser.email
-      }));
+      if (showToast) {
+        showToast(`Compte créé avec succès! Bienvenue ${newUser.name} 🎉`, 'success');
+      }
+      
+      // Force navbar and cart/wishlist to update
+      window.dispatchEvent(new Event('storage'));
 
-      // Trigger custom event to update Layout
-      window.dispatchEvent(new Event('loginStatusChanged'));
-
-      // Redirect to home page
       navigate('/');
     } catch (error) {
-      setError('Registration failed');
+      setError('Échec de l\'inscription. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }
@@ -113,57 +121,57 @@ export default function Register() {
         </div>
         
         <div className="auth-form">
-          <h2>Create Your Account</h2>
-          <p>Please fill in your details to register</p>
+          <h2>Créer votre compte</h2>
+          <p>Veuillez remplir vos informations pour vous inscrire</p>
 
           {error && (
-            <div className="error-message">
-              <p>❌ {error}</p>
-            </div>
+            <p style={{ color: '#E53935', fontSize: '13px', marginBottom: '12px' }}>
+              {error}
+            </p>
           )}
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>Full Name</label>
+              <label>Nom complet</label>
               <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
                 required
-                placeholder="Enter your full name"
+                placeholder="Entrez votre nom complet"
               />
             </div>
 
             <div className="form-group">
-              <label>Email Address</label>
+              <label>Adresse email</label>
               <input
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                 required
-                placeholder="Enter your email"
+                placeholder="Entrez votre email"
               />
             </div>
 
             <div className="form-group">
-              <label>Password</label>
+              <label>Mot de passe</label>
               <input
                 type="password"
                 value={formData.password}
                 onChange={(e) => setFormData({...formData, password: e.target.value})}
                 required
-                placeholder="Enter your password"
+                placeholder="Entrez votre mot de passe"
               />
             </div>
 
             <div className="form-group">
-              <label>Confirm Password</label>
+              <label>Confirmer le mot de passe</label>
               <input
                 type="password"
                 value={formData.confirmPassword}
                 onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
                 required
-                placeholder="Confirm your password"
+                placeholder="Confirmez votre mot de passe"
               />
             </div>
 
@@ -172,7 +180,7 @@ export default function Register() {
               className="auth-btn"
               disabled={loading}
             >
-              {loading ? 'Creating Account...' : 'Sign Up'}
+              {loading ? 'Création du compte...' : 'S\'inscrire'}
             </button>
             
             <button 
@@ -181,12 +189,12 @@ export default function Register() {
               onClick={registerWithGoogle}
               style={{marginTop: '10px', backgroundColor: '#db4437'}}
             >
-              <i className="fab fa-google me-2"></i>Sign up with Google
+              <i className="fab fa-google me-2"></i>S'inscrire avec Google
             </button>
           </form>
 
           <div className="auth-links">
-            <p>Already have an account ? <Link to="/login">Sign in here</Link></p>
+            <p>Déjà un compte ? <span onClick={() => navigate('/login')} style={{ cursor: 'pointer', color: '#C9A96E' }}>Se connecter ici</span></p>
           </div>
         </div>
       </div>
