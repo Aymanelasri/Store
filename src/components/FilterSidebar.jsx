@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { X } from 'lucide-react';
 import './FilterSidebar.css';
 
 export default function FilterSidebar({
-  onFilterChange,
-  onClose,
-  isMobile = false,
-  genderContext = null
-}) {
-  const [filters, setFilters] = useState({
+  filters = {
     category: [],
     size: [],
     color: [],
     priceRange: [0, 1000],
     availability: true,
     sort: 'populaire'
-  });
+  },
+  onFilterChange,
+  onClose,
+  isMobile = false,
+  genderContext = null
+}) {
 
   // Categories based on gender context
   const getAllCategories = () => [
@@ -51,56 +51,28 @@ export default function FilterSidebar({
                    genderContext === 'homme' ? getHommeCategories() :
                    getAllCategories();
 
-  // Dynamic size options based on selected categories
-  const shoeCategories = ['chaussures', 'sandales', 'baskets', 'accessoires'];
-  const isShoeCategory = filters.category.some(c => shoeCategories.includes(c));
-  
-  const clothingSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-  const shoeSizes = ['36', '37', '38', '39', '40', '41', '42', '43', '44', '45'];
-  const availableSizes = isShoeCategory ? shoeSizes : clothingSizes;
-
-  const availableColors = [
-    { name: 'Noir', hex: '#1A1A1A' },
-    { name: 'Or', hex: '#C9A96E' },
-    { name: 'Crème', hex: '#F8F5F0' },
-    { name: 'Terracotta', hex: '#8B4513' },
-    { name: 'Blanc', hex: '#ffffff' },
-    { name: 'Bleu', hex: '#1a3a6b' },
-    { name: 'Vert', hex: '#2d6a4f' },
-    { name: 'Rose', hex: '#FFB6C1' }
-  ];
-
   const handleCategoryChange = (cat) => {
     if (cat.startsWith('divider')) return;
+    console.log('Category clicked:', cat);
+    console.log('Current filters before:', filters);
     const updated = filters.category.includes(cat)
       ? filters.category.filter((c) => c !== cat)
       : [...filters.category, cat];
-    updateFilters({ ...filters, category: updated });
-  };
-
-  const handleSizeFilter = (size) => {
-    const updated = filters.size.includes(size)
-      ? filters.size.filter((s) => s !== size)
-      : [...filters.size, size];
-    updateFilters({ ...filters, size: updated });
-  };
-
-  const handleColorFilter = (color) => {
-    const updated = filters.color.includes(color)
-      ? filters.color.filter((c) => c !== color)
-      : [...filters.color, color];
-    updateFilters({ ...filters, color: updated });
+    console.log('Updated categories:', updated);
+    const newFilters = { ...filters, category: updated };
+    console.log('New filters object:', newFilters);
+    onFilterChange(newFilters);
   };
 
   const handlePriceChange = (e) => {
-    updateFilters({
+    onFilterChange({
       ...filters,
       priceRange: [filters.priceRange[0], parseInt(e.target.value)]
     });
   };
 
   const handleSortChange = (e) => {
-    updateFilters({ ...filters, sort: e.target.value });
+    onFilterChange({ ...filters, sort: e.target.value });
   };
 
   const resetAllFilters = () => {
@@ -112,13 +84,11 @@ export default function FilterSidebar({
       availability: true,
       sort: 'populaire'
     };
-    setFilters(resetFilters);
-    onFilterChange?.(resetFilters);
+    onFilterChange(resetFilters);
   };
 
   const updateFilters = (newFilters) => {
-    setFilters(newFilters);
-    onFilterChange?.(newFilters);
+    onFilterChange(newFilters);
   };
 
   const activeFiltersCount =
@@ -232,7 +202,7 @@ export default function FilterSidebar({
             type="checkbox"
             checked={filters.availability}
             onChange={(e) =>
-              updateFilters({ ...filters, availability: e.target.checked })
+              onFilterChange({ ...filters, availability: e.target.checked })
             }
             style={{ accentColor: '#C9A96E' }}
           />

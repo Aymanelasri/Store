@@ -31,22 +31,26 @@ export default function Femme({ showToast }) {
   };
 
   const [filters, setFilters] = useState({
-    sort: sortParam || 'populaire',
-    category: getDefaultCategories(),
+    sort: 'populaire',
+    category: [],
     size: [],
     color: [],
     priceRange: [0, 1000],
     availability: true,
-    showSaleOnly: sale === 'true'
+    showSaleOnly: false
   });
   const [showMobileFilter, setShowMobileFilter] = useState(false);
 
   // Update filters when URL parameters change
   useEffect(() => {
-    const newFilters = { ...filters };
-    
-    // Reset showSaleOnly first
-    newFilters.showSaleOnly = false;
+    const newFilters = {
+      sort: sortParam || 'populaire',
+      size: [],
+      color: [],
+      priceRange: [0, 1000],
+      availability: true,
+      showSaleOnly: false
+    };
     
     if (cat) {
       // Category-specific filter - show ALL products of this category regardless of gender
@@ -73,9 +77,14 @@ export default function Femme({ showToast }) {
     }
     
     setFilters(newFilters);
-  }, [cat, filters, gender, sale, sortParam]);
+  }, [cat, gender, sale, sortParam]);
 
   const filteredAndSortedProducts = useMemo(() => {
+    console.log('=== FILTERING DEBUG ===');
+    console.log('Current filters:', filters);
+    console.log('URL params - cat:', cat, 'gender:', gender, 'sale:', sale);
+    console.log('Total products available:', products.length);
+    
     // First filter products
     let result = products.filter((p) => {
       // Search filter
@@ -86,6 +95,7 @@ export default function Femme({ showToast }) {
       // If filtering by specific category from homepage, ignore gender filter
       if (cat) {
         const categoryMatch = p.category === cat;
+        console.log(`Product ${p.name} (${p.category}) matches cat ${cat}:`, categoryMatch);
         
         // Sale filter
         if (filters.showSaleOnly && !p.oldPrice) {
@@ -122,11 +132,16 @@ export default function Femme({ showToast }) {
       }
       
       // Normal filtering with gender restriction
-      const genderMatch = !gender || p.gender === gender;
+      const genderMatch = !gender || p.gender === gender || p.gender === 'unisex';
+      console.log(`Product ${p.name}: gender=${p.gender}, pageGender=${gender}, genderMatch=${genderMatch}`);
       
       // Category filter
       const categoryMatch = filters.category.length === 0 || 
         filters.category.includes(p.category);
+      
+      if (filters.category.length > 0) {
+        console.log(`Product ${p.name} (${p.category}) matches categories ${filters.category}:`, categoryMatch);
+      }
       
       // Size filter
       const sizeMatch = filters.size.length === 0 || 
@@ -143,8 +158,17 @@ export default function Femme({ showToast }) {
       // Availability filter
       const availabilityMatch = !filters.availability || p.inStock;
       
-      return searchMatch && genderMatch && categoryMatch && sizeMatch && colorMatch && priceMatch && availabilityMatch;
+      const finalMatch = searchMatch && genderMatch && categoryMatch && sizeMatch && colorMatch && priceMatch && availabilityMatch;
+      
+      if (filters.category.length > 0 && finalMatch) {
+        console.log(`✓ Product ${p.name} MATCHES all filters`);
+      }
+      
+      return finalMatch;
     });
+
+    console.log('Filtered results count:', result.length);
+    console.log('Filtered products:', result.map(p => `${p.name} (${p.category})`));
 
     // Then sort the filtered results
     switch (filters.sort) {
@@ -175,6 +199,7 @@ export default function Femme({ showToast }) {
   }, [filters, search, cat, gender, sale, sortParam]);
 
   const handleFilterChange = (newFilters) => {
+    console.log('Filter change received in Femme:', newFilters);
     setFilters(newFilters);
   };
 
@@ -241,6 +266,7 @@ export default function Femme({ showToast }) {
         {/* Filter Sidebar */}
         {showMobileFilter && (
           <FilterSidebar
+            filters={filters}
             onFilterChange={handleFilterChange}
             onClose={() => setShowMobileFilter(false)}
             isMobile={true}
@@ -250,6 +276,7 @@ export default function Femme({ showToast }) {
 
         <div className="collection-sidebar">
           <FilterSidebar
+            filters={filters}
             onFilterChange={handleFilterChange}
             isMobile={false}
             genderContext={gender}

@@ -1,3 +1,22 @@
+:root {
+  --color-white: #ffffff;
+  --color-border: #e5e5e5;
+  --color-dark: #1a1a1a;
+  --color-text: #333333;
+  --color-gold: #C9A96E;
+  --color-bg-light: #f8f5f0;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 20px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --transition-base: 0.2s ease;
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --z-modal: 1000;
+  --navbar-height: 70px;
+}
+
 /* ========================================
    FILTER SIDEBAR STYLES
    ======================================== */
@@ -259,4 +278,45 @@
     flex-direction: column;
     padding: var(--spacing-lg);
   }
+}
+/* Size and Color Filter Styles */
+.size-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.size-btn {
+  transition: all 0.2s ease;
+}
+
+.size-btn:hover {
+  border-color: #C9A96E !important;
+  transform: translateY(-1px);
+}
+
+.color-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.color-btn {
+  transition: all 0.2s ease;
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+}
+
+.filter-options {
+  margin-bottom: 8px;
+}
+
+.filter-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
 }
